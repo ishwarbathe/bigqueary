@@ -4,45 +4,29 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.google.api.gax.paging.Page;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.bigquery.BigQuery;
+import com.google.cloud.bigquery.BigQuery.TableListOption;
 import com.google.cloud.bigquery.BigQueryException;
 import com.google.cloud.bigquery.BigQueryOptions;
-import com.google.cloud.bigquery.QueryJobConfiguration;
-import com.google.cloud.bigquery.TableResult;
+import com.google.cloud.bigquery.DatasetId;
+import com.google.cloud.bigquery.Table;
 
-// Sample to query in a table
-public class Query {
+public class BigQueryListTables {
 
   public static void main(String[] args) throws FileNotFoundException, IOException {
     // TODO(developer): Replace these variables before running the sample.
-    String projectId = "newscorp-newsiq";
+	  String projectId = "newscorp-newsiq";
     String datasetName = "temporary_analysis";
-    String tableName = "globalqa";
-//    String query =
-//        "SELECT * "
-//            + " FROM `"
-//            + projectId
-//            + "."
-//            + datasetName
-//            + "."
-//            + tableName;
-    
-   String query = "SELECT * FROM newscorp-newsiq.temporary_analysis.globalqa LIMIT 1";
-   
-    
-   
-    //String query = " SELECT column_name FROM newscorp-newsiq.temporary_analysis.INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'newscorp-newsiq.temporary_analysis.globalqa'";
-   
-   query(query);
+    listTables(projectId, datasetName);
   }
 
-  public static void query(String query) throws FileNotFoundException, IOException {
+  public static void listTables(String projectId, String datasetName) throws FileNotFoundException, IOException {
     try {
-    	
     	  // TODO(developer): Replace these variables before running the sample.
-	    String projectId = "newscorp-newsiq";
+	    
 	    File credentialsPath = new File("C:\\Users\\dell\\Downloads\\newscorp-newsiq-217c60cd1e66 (1).json");
 
 	    // Load credentials from JSON key file. If you can't set the GOOGLE_APPLICATION_CREDENTIALS
@@ -52,8 +36,7 @@ public class Query {
 	    try (FileInputStream serviceAccountStream = new FileInputStream(credentialsPath)) {
 	      credentials = ServiceAccountCredentials.fromStream(serviceAccountStream);
 	    }
-	    
-	    
+
 	    // Instantiate a client.
 	    BigQuery bigquery =
 	        BigQueryOptions.newBuilder()
@@ -62,17 +45,14 @@ public class Query {
 	            .build()
 	            .getService();
 
-      QueryJobConfiguration queryConfig = QueryJobConfiguration.newBuilder(query).build();
 
-      TableResult results = bigquery.query(queryConfig);
+      DatasetId datasetId = DatasetId.of(projectId, datasetName);
+      Page<Table> tables = bigquery.listTables(datasetId, TableListOption.pageSize(100));
+      tables.iterateAll().forEach(table -> System.out.print(table.getTableId().getTable() + "\n"));
 
-      results
-          .iterateAll()
-          .forEach(row -> row.forEach(val -> System.out.printf("%s,", val.toString())));
-
-      System.out.println("Query performed successfully.");
-    } catch (BigQueryException | InterruptedException e) {
-      System.out.println("Query not performed \n" + e.toString());
+      System.out.println("Tables listed successfully.");
+    } catch (BigQueryException e) {
+      System.out.println("Tables were not listed. Error occurred: " + e.toString());
     }
   }
 }

@@ -27,7 +27,13 @@ public class APITesting {
 	    // Use the client.
 	    System.out.println("Datasets:");
 	    for (Dataset dataset : bigquery.listDatasets().iterateAll()) {
+	    	System.out.println("----------------------------------------------");
 	      System.out.printf("%s%n", dataset.getDatasetId().getDataset());
+	      System.out.printf("%s%n", dataset.getDatasetId());
+	    
+//	      if(dataset.getDatasetId().getDataset().equals("temporary_analysis")){
+//	    	
+//	      }
 	    }
 	  }
 	  // [END bigquery_client_default_credentials]
@@ -57,7 +63,9 @@ public class APITesting {
 	    // Use the client.
 	    System.out.println("Datasets:");
 	    for (Dataset dataset : bigquery.listDatasets().iterateAll()) {
-	      System.out.printf("%s%n", dataset.getDatasetId().getDataset());
+	    	System.out.println("***************************************************");
+		      System.out.printf("%s%n", dataset.getDatasetId().getDataset());
+		      System.out.printf("%s%n", dataset.getDatasetId());
 	    }
 	  }
 	  // [END bigquery_client_json_credentials]

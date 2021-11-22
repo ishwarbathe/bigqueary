@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="334404" started-at="2021-11-19T10:04:54Z" finished-at="2021-11-19T10:10:29Z">
+    <groups>
+    </groups>
+    <test name="PageSpeedInsight" duration-ms="307056" started-at="2021-11-19T10:04:54Z" finished-at="2021-11-19T10:10:01Z">
+      <class name="com.newscorp.url.TcPageSpeedInsight">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.newscorp.url.TcPageSpeedInsight@6aeb35e6]" name="beforeSuite" is-config="true" duration-ms="10" started-at="2021-11-19T15:34:54Z" finished-at="2021-11-19T15:34:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="pageSpeedInsight(java.lang.String, java.lang.String)[pri:0, instance:com.newscorp.url.TcPageSpeedInsight@6aeb35e6]" name="pageSpeedInsight" duration-ms="306844" started-at="2021-11-19T15:34:55Z" data-provider="URLData" finished-at="2021-11-19T15:40:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1.0]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[https://nypost.com/]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pageSpeedInsight -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.newscorp.url.TcPageSpeedInsight@6aeb35e6]" name="afterSuite" is-config="true" duration-ms="8881" started-at="2021-11-19T15:40:29Z" finished-at="2021-11-19T15:40:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.newscorp.url.TcPageSpeedInsight -->
+    </test> <!-- PageSpeedInsight -->
+    <test name="LightHouse" duration-ms="334404" started-at="2021-11-19T10:04:54Z" finished-at="2021-11-19T10:10:29Z">
+      <class name="com.newscorp.url.TcLightHouse">
+        <test-method status="PASS" signature="lightHouse(java.lang.String, java.lang.String)[pri:0, instance:com.newscorp.url.TcLightHouse@1623b78d]" name="lightHouse" duration-ms="334190" started-at="2021-11-19T15:34:55Z" data-provider="URLData" finished-at="2021-11-19T15:40:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1.0]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[https://nypost.com/]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- lightHouse -->
+      </class> <!-- com.newscorp.url.TcLightHouse -->
+    </test> <!-- LightHouse -->
+  </suite> <!-- Suite -->
+</testng-results>
